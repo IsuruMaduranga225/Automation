@@ -1,0 +1,15 @@
+---
+- hosts: vbn
+  become: yes
+  tasks: 
+	 - name: install apache2 ubuntu
+	   apt: name=apache2 state=latest
+	   ignore_errors: yes
+	   register: results 
+
+	 - name: install httpd centos
+	   yum: name= httpd state=latest
+	   when: results|fail 
+	   
+	   
+	   

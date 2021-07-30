@@ -1,0 +1,15 @@
+---
+- hosts: vbn
+  become: yes
+  tasks: 
+	 - name: install apache2 
+	   apt: name=apache2 state=absent
+	   ignore_errors: yes
+	   when: ansible_os_family=="Debian"
+
+	 - name: install httpd 
+	   yum: name= httpd state=absent
+	   when: ansible_os_family=="Redhat"
+	   
+	   
+	   
